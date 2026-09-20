@@ -38,24 +38,21 @@ fn run_time(duration: u64, state: TimeState) -> TimeState {
 }
 
 fn timer(time: u64, state: TimeState, n: u64) {
-    while time == n {
-        let mut current = state;
-        run_time(time, current);
-        run_time(time, current);
+     
+    let mut new_state = state;
+    let mut score: u64 = 0;
+
+    while score < n {
+        new_state = run_time(time, new_state);
+
+        score += 1;
     }
 }
 
 fn main() {
-    let mut current = TimeState::Work;
-    let stop = TimeState::Finished;
+    let current = TimeState::Work;
 
+    timer(15, current, 3);
 
-    current = run_time(5, current);
-
-    current = run_time(3, current);
-
-    current = run_time(0, current);
-
-    current = run_time(0, stop);
 
 }
